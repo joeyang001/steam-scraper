@@ -1,0 +1,56 @@
+{
+  "actorSpecification": 1,
+  "name": "steam-scraper",
+  "title": "Steam Scraper — Games, Prices & Reviews API",
+  "description": "Scrape the Steam store: search games, then pull full app details (price, discount, genres, platforms, release date, Metacritic, screenshots, DLC) and player reviews with vote counts and playtime. Cursor-paginated, de-duplicated, normalized, with provenance on every row.",
+  "version": "0.0",
+  "buildTag": "latest",
+  "meta": { "templateId": "python-start" },
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "input": "./INPUT_SCHEMA.json",
+  "categories": ["GAMES", "ECOMMERCE", "ENTERTAINMENT"],
+  "minMemoryMbytes": 256,
+  "maxMemoryMbytes": 1024,
+  "output": {
+    "actorOutputSchemaVersion": 1,
+    "title": "Steam output",
+    "description": "Steam games (with full details) and player reviews.",
+    "properties": {
+      "results": { "type": "string", "title": "Rows", "template": "{{links.apiDefaultDatasetUrl}}/items" }
+    }
+  },
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "fields": {
+        "record_type": "string",
+        "app_id": "integer", "name": "string", "app_type": "string", "is_free": "boolean",
+        "is_coming_soon": "boolean", "release_date": "string", "required_age": "integer",
+        "developers": "array", "publishers": "array", "genres": "array", "categories": "array",
+        "platforms_windows": "boolean", "platforms_mac": "boolean", "platforms_linux": "boolean",
+        "price_currency": "string", "price_initial": "integer", "price_final": "integer",
+        "price_discount_percent": "integer", "price_formatted": "string", "is_discounted": "boolean",
+        "metacritic_score": "integer", "recommendations_total": "integer", "achievements_total": "integer",
+        "controller_support": "string", "supported_languages": "string", "website": "string",
+        "header_image": "string", "capsule_image": "string", "background": "string",
+        "short_description": "string", "detailed_description": "string", "about_the_game": "string",
+        "screenshot_count": "integer", "screenshots": "array", "movie_count": "integer",
+        "dlc_count": "integer", "dlc": "array", "store_url": "string",
+        "recommendation_id": "string", "language": "string", "review_text": "string",
+        "voted_up": "boolean", "votes_up": "integer", "votes_funny": "integer",
+        "weighted_vote_score": "string", "comment_count": "integer",
+        "timestamp_created": "string", "timestamp_created_epoch": "integer", "timestamp_updated": "string",
+        "steam_purchase": "boolean", "received_for_free": "boolean", "refunded": "boolean",
+        "written_during_early_access": "boolean", "primarily_steam_deck": "boolean",
+        "author_steamid": "string", "author_personaname": "string", "author_profile_url": "string",
+        "author_num_games_owned": "integer", "author_num_reviews": "integer",
+        "author_playtime_forever": "integer", "author_playtime_at_review": "integer",
+        "review_score_desc": "string", "review_score": "integer",
+        "total_positive": "integer", "total_negative": "integer", "total_reviews": "integer",
+        "source_type": "string", "source_input": "string",
+        "schema_version": "string", "fetched_at": "string"
+      }
+    }
+  }
+}

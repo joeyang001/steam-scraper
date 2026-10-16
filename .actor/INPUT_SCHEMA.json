@@ -1,0 +1,88 @@
+{
+  "title": "Steam Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "Steam store search terms, e.g. [\"hades\", \"co-op roguelike\", \"factorio\"]. Each result is enriched with full app details.",
+      "editor": "stringList"
+    },
+    "appIds": {
+      "title": "App IDs / URLs",
+      "type": "array",
+      "description": "Specific Steam app IDs or store URLs to fetch, e.g. [1145360, \"https://store.steampowered.com/app/570/Dota_2/\"]. Use alone or with searchQueries.",
+      "editor": "stringList"
+    },
+    "includeReviews": {
+      "title": "Include reviews",
+      "type": "boolean",
+      "description": "Also fetch player reviews for each app (cursor-paginated).",
+      "default": false
+    },
+    "maxReviewsPerApp": {
+      "title": "Max reviews per app",
+      "type": "integer",
+      "description": "Cap on reviews collected per app (100 per page).",
+      "default": 100,
+      "minimum": 1
+    },
+    "reviewFilter": {
+      "title": "Review filter",
+      "type": "string",
+      "description": "Which reviews: recent (default), updated, or all.",
+      "default": "recent",
+      "enum": ["recent", "updated", "all"]
+    },
+    "reviewLanguage": {
+      "title": "Review language",
+      "type": "string",
+      "description": "Language code for reviews, e.g. all (default), english, german, spanish.",
+      "default": "all",
+      "editor": "textfield"
+    },
+    "reviewPurchaseType": {
+      "title": "Review purchase type",
+      "type": "string",
+      "description": "all (default), steam (purchased on Steam) or non_steam_purchase.",
+      "default": "all",
+      "enum": ["all", "steam", "non_steam_purchase"]
+    },
+    "includeDescriptions": {
+      "title": "Include full descriptions",
+      "type": "boolean",
+      "description": "Include the long detailed/about descriptions (adds sizeable text to each game row).",
+      "default": false
+    },
+    "country": {
+      "title": "Country (store region)",
+      "type": "string",
+      "description": "Two-letter store region for pricing, e.g. US, GB, DE.",
+      "default": "US",
+      "editor": "textfield"
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Store language for names/descriptions, e.g. english, german.",
+      "default": "english",
+      "editor": "textfield"
+    },
+    "maxResultsPerSearch": {
+      "title": "Max results per search",
+      "type": "integer",
+      "description": "Cap on games collected per search term.",
+      "default": 50,
+      "minimum": 1
+    },
+    "maxItems": {
+      "title": "Max rows total",
+      "type": "integer",
+      "description": "Overall cap on rows (games + reviews) pushed to the dataset.",
+      "default": 100000,
+      "minimum": 1
+    }
+  },
+  "required": []
+}
